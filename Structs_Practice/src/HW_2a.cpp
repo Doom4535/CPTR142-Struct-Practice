@@ -41,7 +41,44 @@ struct Student
 	}
 };
 
+struct Management
+{
+	std::string MgrName;
+	std::string Department;
+
+	//Management(std::string Manager, std::string Dept){
+	//	MgrName = Manager;
+	//	Department = Dept;
+	//}
+};
+
+struct EmployeeRecord
+{
+	int wagerate;
+	int accruedVacation;
+	char status; // hourly (H) or salary (S)
+	Management Manager;
+
+	EmployeeRecord(int wg, int accrueV, char stat, std::string Mname, std::string dept){
+		wagerate = wg;
+		accruedVacation = accrueV;
+		status = stat;
+		Manager.MgrName = Mname;
+		Manager.Department = dept;
+	}
+};
+
+int prob_2(void);
+int prob_3(void);
+
 int main() {
+	prob_2();
+	prob_3();
+
+	return 0;
+}
+
+int prob_2(void){
 	std::cout << "!!!Hello World!!!" << std::endl; // prints !!!Hello World!!!
 	//Student s1;
 	Student s1(567, "Harry", "Smith", 2020, "August", 31, 1994);
@@ -65,5 +102,14 @@ int main() {
 	std::cout << s3.ID << " " << s3.data.fname << " " << s3.birthdate.year << std::endl;
 	std::cout << s4.ID << " " << s4.data.fname << " " << s4.birthdate.year << std::endl;
 
-	return 0;
+	return(0);
+}
+
+// verify that this is the same as the one in the 1st edition
+int prob_3(void){
+	//EmployeeRecord Jimmy;
+	//EmployeeRecord John;
+	EmployeeRecord Jimmy(40000, 5, 'H', "Bob", "Shipping");
+	EmployeeRecord John(50000, 6, 'S', "Jane", "Sales");
+	std::cout << Jimmy.wagerate << " " << Jimmy.accruedVacation << " " << Jimmy.status << " " << Jimmy.Manager.MgrName << std::endl;
 }
