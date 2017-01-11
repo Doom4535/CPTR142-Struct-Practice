@@ -5,9 +5,10 @@
 // Copyright   : Your copyright notice
 // Description : Hello World in C++, Ansi-style
 //============================================================================
-
 #include <iostream>
 #include <string>
+#include "students.h"
+#include "humanresources.h"
 //using namespace std;
 
 struct Date
@@ -15,64 +16,6 @@ struct Date
 	int month;
 	int day;
 	int year;
-};
-
-struct Info
-{
-	std::string fname;
-	std::string lname;
-};
-
-struct Birth
-{
-	int day;
-	std::string month;
-	int year;
-};
-
-struct Student
-{
-	int ID;
-	Info data;
-	int gradYear;
-	Birth birthdate;
-
-	Student(int id, std::string fn, std::string ln, int yr, std::string m, int d, int byr){
-		ID = id;
-		data.fname = fn;
-		data.lname = ln;
-		gradYear = yr;
-		birthdate.month = m;
-		birthdate.day = d;
-		birthdate.year = byr;
-	}
-};
-
-struct Management
-{
-	std::string MgrName;
-	std::string Department;
-
-	//Management(std::string Manager, std::string Dept){
-	//	MgrName = Manager;
-	//	Department = Dept;
-	//}
-};
-
-struct EmployeeRecord
-{
-	int wagerate;
-	int accruedVacation;
-	char status; // hourly (H) or salary (S)
-	Management Manager;
-
-	EmployeeRecord(int wg, int accrueV, char stat, std::string Mname, std::string dept){
-		wagerate = wg;
-		accruedVacation = accrueV;
-		status = stat;
-		Manager.MgrName = Mname;
-		Manager.Department = dept;
-	}
 };
 
 struct ShoeType
