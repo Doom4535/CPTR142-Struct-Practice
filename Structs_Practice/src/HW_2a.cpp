@@ -10,6 +10,13 @@
 #include <string>
 //using namespace std;
 
+struct Date
+{
+	int month;
+	int day;
+	int year;
+};
+
 struct Info
 {
 	std::string fname;
@@ -68,18 +75,49 @@ struct EmployeeRecord
 	}
 };
 
+struct ShoeType
+{
+	char style;
+	double price;
+};
+
+int prob_1(void);
 int prob_2(void);
 int prob_3(void);
+int prob_4(void);
+int prob_4a(void);
+int prob_4b(void);
+void readShoeRecord(ShoeType& newShoe);
+ShoeType discount(ShoeType oldRecord);
 
 int main() {
+	prob_1();
 	prob_2();
 	prob_3();
+	prob_4();
 
 	return 0;
 }
 
+int prob_1(void){
+	Date dueDate1 = {12, 21};			// This line is dangerous; it will work, but only initializes the 1st 2 values and not the 3rd
+	Date dueDate2 = {12, 21, 1995};
+	//Date dueDate3 = {12, 21, 19, 95};	// This line tries to assign too many values into
+	std::cout << "This is the dangerous one (part a.), notice that the year is uninitialized and will take an unknown value: " << std::endl;
+	std::cout << "Day: " << dueDate1.day << std::endl;
+	std::cout << "Month: " << dueDate1.month << std::endl;
+	std::cout << "Year: " << dueDate1.year << std::endl;
+	std::cout << "This is the valid line (part b.): " << std::endl;
+	std::cout << "Day: " << dueDate2.day << std::endl;
+	std::cout << "Month: " << dueDate2.month << std::endl;
+	std::cout << "Year: " << dueDate2.year << std::endl;
+	std::cout << "The erroneous line (part c.) does not compile because it tries to assign 4 values to a structure that only supports 3 values" << std::endl;
+
+	return(0);
+}
+
 int prob_2(void){
-	std::cout << "!!!Hello World!!!" << std::endl; // prints !!!Hello World!!!
+	//std::cout << "!!!Hello World!!!" << std::endl; // prints !!!Hello World!!!
 	//Student s1;
 	Student s1(567, "Harry", "Smith", 2020, "August", 31, 1994);
 	Student s2(457, "Jane", "Doe", 2020, "June", 19, 1995);
@@ -112,4 +150,54 @@ int prob_3(void){
 	EmployeeRecord Jimmy(40000, 5, 'H', "Bob", "Shipping");
 	EmployeeRecord John(50000, 6, 'S', "Jane", "Sales");
 	std::cout << Jimmy.wagerate << " " << Jimmy.accruedVacation << " " << Jimmy.status << " " << Jimmy.Manager.MgrName << std::endl;
+
+	return(0);
+}
+
+int prob_4(void){
+	prob_4a();
+	prob_4b();
+
+	return(0);
+}
+
+int prob_4a(void){
+	std::cout << "Prob. 4a: " << std::endl;
+	ShoeType shoe1, shoe2;
+	shoe1.style= 'A';
+	shoe1.price = 9.99;
+	shoe2 = shoe1;
+	ShoeType shoe3;
+	std::cout << shoe1.style << " $" << shoe1.price << std::endl;
+	readShoeRecord(shoe3);
+	std::cout << shoe3.style << " $" << shoe3.price << std::endl;
+
+	return(0);
+}
+
+int prob_4b(void){
+	std::cout << std::endl;
+	std::cout << "Prob. 4b: " << std::endl;
+	ShoeType overpricedShoe, discountedShoe;
+	readShoeRecord(overpricedShoe);
+	discountedShoe = discount(overpricedShoe);
+	std::cout << "Original Price: " << overpricedShoe.price << std::endl;
+	std::cout << "Discounted Price: " << discountedShoe.price << std::endl;
+
+	return(0);
+}
+void readShoeRecord(ShoeType& newShoe){
+// Fills in newShoe values
+	std::cout << "Shoe style: ";
+	std::cin >> newShoe.style;
+	std::cout << "Shoe price: ";
+	std::cin >> newShoe.price;
+	std::cout << std::endl;
+}
+
+ShoeType discount(ShoeType oldRecord){
+// Returns a new 10% discounted shoe structure
+	ShoeType newRecord = oldRecord;
+	newRecord.price = oldRecord.price * 0.9;
+	return(newRecord);
 }
